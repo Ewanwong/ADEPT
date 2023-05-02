@@ -2,7 +2,7 @@ import argparse
 import regex as re
 import nltk
 import torch
-from transformers import BertTokenizer, RobertaTokenizer
+from transformers import BertTokenizer, RobertaTokenizer, GPT2Tokenizer
 import random
 from tqdm import tqdm
 
@@ -17,7 +17,7 @@ def parse_args():
     parser.add_argument('--output', type=str, required=True)
     parser.add_argument('--block_size', type=int, default=128)
     parser.add_argument('--model_type', type=str, required=True,
-                        choices=['bert', 'roberta'])
+                        choices=['bert', 'roberta', 'gpt2'])
     parser.add_argument('--ab_test_type', type=str, default='final',
                         choices=['raw', 'reliability', 'quality', 'quantity-100', 'quantity-1000', 'quantity-10000', 'final'])
 
@@ -32,6 +32,9 @@ def prepare_tokenizer(args):
     elif args.model_type == 'roberta':
         pretrained_weights = 'roberta-large'
         tokenizer = RobertaTokenizer.from_pretrained(pretrained_weights)
+    elif args.model_type == 'gpt2':
+        pretrained_weights = 'gpt2'
+        tokenizer = GPT2Tokenizer.from_pretrained(pretrained_weights)
     return tokenizer
 
 def main(args):

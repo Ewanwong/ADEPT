@@ -8,6 +8,8 @@ if [ $model_type == 'bert' ]; then
     model_name_or_path=bert-large-uncased
 elif [ $model_type == 'roberta' ]; then
     model_name_or_path=roberta-large
+elif [ $model_type == 'gpt2' ]; then
+    model_name_or_path=gpt2
 fi
 
 if [ $bias == 'gender' ]; then
