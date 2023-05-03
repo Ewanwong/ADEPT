@@ -204,7 +204,7 @@ def main(args):
     torch.save(data, args.output + '/data.bin')
     """
     with open(args.output+'/filtered_lines.txt', 'w') as f:
-        for line in valid_lines:
+        for line in list(set(valid_lines)):
             f.write(line)
             f.write('\n')
 if __name__ == "__main__":
