@@ -35,7 +35,7 @@ if [ $ab_test != 'all' ]; then
     mkdir -p $OUTPUT_DIR
     echo $model_type $bias $ab_test
 
-    python -u ../collect_sentences.py --input ../data/$data \
+    python -u ../collect_my_own_sentences.py --input ../data/$data \
                             --neutral_words ../data/neutral.txt \
                             --attribute_words $attribute_words \
                             --output $OUTPUT_DIR \
@@ -51,7 +51,7 @@ else
         mkdir -p $OUTPUT_DIR
         echo $model_type $bias $ab_test_type
 
-        python -u ../collect_sentences.py --input ../data/$data \
+        python -u ../collect_my_own_sentences.py --input ../data/$data \
                                 --neutral_words ../data/neutral.txt \
                                 --attribute_words $attribute_words \
                                 --output $OUTPUT_DIR \
