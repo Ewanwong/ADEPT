@@ -67,7 +67,7 @@ def main():
         # this is to make sure the transformed text has the same tokenization as original text
         prefix_length = len(toks[0])
         prefix = toks[0]
-        intervals = [] # record where to put whitespace
+        intervals = [0] # record where to put whitespace
         for i in range(1, len(toks)):
             if prefix_length+len(toks[i])+1 > len(sent):
                 intervals.append(0)
@@ -105,11 +105,13 @@ def main():
         assert len(toks) == len(swapped_sent)
 
         # add white spaces
-        new_sent = swapped_sent[0]
-        for i in range(1, len(toks)):
-            new_sent = new_sent + ' '*intervals[i-1] + swapped_sent[i]
+        new_sent = ''
+        for i in range(len(toks)):
+            new_sent = new_sent + ' '*intervals[i] + swapped_sent[i]
         gender_swapped_sents.append(new_sent)
         # gender_swapped_sents.append(' '.join(swapped_sent))
+
+    #TODO: add name swapping
     
     with open(output_path, 'w') as f:
         for sent in gender_swapped_sents:
